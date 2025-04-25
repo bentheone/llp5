@@ -20,24 +20,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('/login', function () {
     return view('login');
 });
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/register', function () {
+Route::get('/', function () {
     return view('register');
 });
 Route::post('/register', [AuthController::class, 'register']);
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'showDashboard']);
-    Route::resource('jobs', [JobController::class]);
-    Route::resource('applicants', [ApplicantController::class]);
-    Route::resource('applications', [ApplicantionController::class]);
-    Route::resource('stages', [StageController::class]);
+    Route::get('/dashboard', DashboardController::class, 'showDashboard');
+    Route::resource('jobs', JobController::class);
+    Route::resource('applicants', ApplicantController::class);
+    Route::resource('applications', ApplicantionController::class);
+    Route::resource('stages', StageController::class);
 });
 
