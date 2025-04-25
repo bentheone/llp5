@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Applicant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApplicantController extends Controller
 {
@@ -14,7 +15,9 @@ class ApplicantController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $applicants = $user->applicants()->get();
+        return view('applicants.index', compact('applicant'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ApplicantController extends Controller
      */
     public function create()
     {
-        //
+        return view('applicants.create');
     }
 
     /**
@@ -35,7 +38,20 @@ class ApplicantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $applicant = $request->validate([
+                'fname'=>'required|string|max:255',
+                'lname'=>'required|string|max:255',
+                'email'=>'required|string|email|max:255',
+                'cnumber' => 'required|numeric|starts_with:0|digits:10',
+                'applicationDate'=>'required|date|before_or_equal:today'
+            ]);
+
+            Applicant::create($applicant);
+            return view('applicants.index')->with(['success'=>'Applicant created!']);
+        } catch (\Exception $e) {
+            return back()->withErrors(['createApplicant'=>$e->getMessage()]);
+        }
     }
 
     /**
@@ -57,7 +73,7 @@ class ApplicantController extends Controller
      */
     public function edit(Applicant $applicant)
     {
-        //
+        return view('applicants.edit', compact('applicant'));
     }
 
     /**
@@ -69,7 +85,20 @@ class ApplicantController extends Controller
      */
     public function update(Request $request, Applicant $applicant)
     {
-        //
+        try {
+            $updatedApplicant = $request->validate([
+                'fname'=>'required|string|max:255',
+                'lname'=>'required|string|max:255',
+                'email'=>'required|string|email|max:255',
+                'cnumber' => 'required|numeric|starts_with:0|digits:10',
+                'applicationDate'=>'required|date|before_or_equal:today'
+            ]);
+
+            $applicant->update($updatedApplicant);
+            return view('applicant.index')->with(['success'=>'Applicant updated!']);
+        } catch (\Exception $e) {
+            return back()->withErrors(['updateJob'=>$e->getMessage()]);
+        }
     }
 
     /**
@@ -80,6 +109,7 @@ class ApplicantController extends Controller
      */
     public function destroy(Applicant $applicant)
     {
-        //
+      $applicant->delete();
+      return view('applicant.index')->with(['success'=>'Applicant deleted!']);
     }
 }

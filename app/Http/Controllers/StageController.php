@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Stage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StageController extends Controller
 {
@@ -14,7 +15,9 @@ class StageController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $stages = $user->stages()->get();
+        return view('stages.index', compact('stages', 'user'));
     }
 
     /**
@@ -24,7 +27,8 @@ class StageController extends Controller
      */
     public function create()
     {
-        //
+        return view('stages.create');
+        
     }
 
     /**

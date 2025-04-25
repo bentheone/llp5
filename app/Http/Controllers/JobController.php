@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -14,7 +15,10 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $jobs = $user->jobs()->get();
+        return view('jobs.index',compact('jobs', 'user'));
+
     }
 
     /**
@@ -24,7 +28,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        //
+        return view('jobs.create');
     }
 
     /**
@@ -35,7 +39,20 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            
+            $job = $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'required|string|max:255',
+                'department'=>'required|string|max:255',
+                'qualifications'=>'required|string|max:255'
+            ]);
+
+            Job::create($job);
+            return view('jobs.index')->with(['success'=> 'Job position created successfully!']);
+        } catch (\Exception $e) {
+            return back()->withErrors(['addJob'=>$e->getMessage()]);
+        }
     }
 
     /**
@@ -57,7 +74,7 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        //
+        return view('jobs.edit', compact('job'));
     }
 
     /**
@@ -69,7 +86,18 @@ class JobController extends Controller
      */
     public function update(Request $request, Job $job)
     {
-        //
+       try {
+        $updatedJob = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'department'=>'required|string|max:255',
+            'qualifications'=>'required|string|max:255'
+        ]);
+        $job->update($updatedJob);
+        return view('jobs.index')->with(['success'=>'Job updated successfully!']);
+       } catch (\Exception $e) {
+        return back()->withErrors(['updateJob'=> $e->getMessage()]);
+       }
     }
 
     /**
@@ -80,6 +108,7 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        //
+        $job->delete();
+        return view('jobs.index')->with(['success'=>'Job deleted!']);
     }
 }
