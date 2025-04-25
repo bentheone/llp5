@@ -28,7 +28,7 @@ class StageController extends Controller
     public function create()
     {
         return view('stages.create');
-        
+
     }
 
     /**
@@ -39,7 +39,22 @@ class StageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            
+            $stage = $request->validate([
+                'application_id'=>'required',
+                'name'=>'required|name|max:255',
+                'status'=>'required|name|max:255',
+                'completionDate' => 'date|before_or_equal:today'
+            ]);
+
+            Stage::create($stage);
+            
+            return view('stages.index')->with(['success'=>'Stage created!']);
+        } catch (\Exception $e) {
+            return back()->withErrors(['addStage' => $e->getMessage()]);
+        }
+
     }
 
     /**
@@ -61,7 +76,7 @@ class StageController extends Controller
      */
     public function edit(Stage $stage)
     {
-        //
+        return view('stages.edit', compact('stage'));
     }
 
     /**
@@ -73,7 +88,19 @@ class StageController extends Controller
      */
     public function update(Request $request, Stage $stage)
     {
-        //
+        try{
+        $updatedStage = $request->validate([
+            'application_id'=>'required',
+            'name'=>'required|name|max:255',
+            'status'=>'required|name|max:255',
+            'completionDate' => 'date|before_or_equal:today'
+        ]);
+
+        $stage->update($updatedStage);
+        return view('stages.index')->with(['success'=> 'Stage updated']);
+       }catch( \Exception $e) {
+        return back()->withErrors(['updateStage' => $e->getMessage()]);
+       }
     }
 
     /**
@@ -84,6 +111,7 @@ class StageController extends Controller
      */
     public function destroy(Stage $stage)
     {
-        //
+        $stage->delete();
+        return back()->with(['success' => 'Stage deleted!'])
     }
 }
