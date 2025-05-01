@@ -23,19 +23,32 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', function () {
     return view('login');
-});
-Route::post('/login', [AuthController::class, 'login']);
+})->name('loginForm');
+//Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', function () {
+    dd('Route reached!');
+})->name('login');
 Route::get('/', function () {
     return view('register');
 });
-Route::post('/register', [AuthController::class, 'register']);
+Route::get('/check-user', function () {
+    $user = \App\Models\User::first();
+    
+    return [
+        'email' => $user->email,
+        'password_in_db' => $user->password,
+        'is_hashed' => str_starts_with($user->password, '$2y$') // bcrypt starts like this
+    ];
+});
+
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', DashboardController::class, 'showDashboard');
+ Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'showDashboard']);
     Route::resource('jobs', JobController::class);
     Route::resource('applicants', ApplicantController::class);
     Route::resource('applications', ApplicantionController::class);
     Route::resource('stages', StageController::class);
-});
+ });
 

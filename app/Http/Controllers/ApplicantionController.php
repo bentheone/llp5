@@ -28,7 +28,10 @@ class ApplicantionController extends Controller
      */
     public function create()
     {
-        return view('applications.create');
+        $user = Auth::user();
+        $jobs = $user->jobs()->get();
+        $applicants = $user->applicants()->get();
+        return view('applications.create', compact('jobs', 'applicants'));
     }
 
     /**

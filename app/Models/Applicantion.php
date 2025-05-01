@@ -21,4 +21,7 @@ class Applicantion extends Model
     public function applicants() {
         return $this->hasMany(Applicant::class);
     }
+    public function jobs() {
+        return $this->hasMany(Job::class);
+    }
 }

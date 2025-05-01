@@ -17,7 +17,7 @@ class ApplicantController extends Controller
     {
         $user = Auth::user();
         $applicants = $user->applicants()->get();
-        return view('applicants.index', compact('applicant'));
+        return view('applicants.index', compact('applicants'));
     }
 
     /**

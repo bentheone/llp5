@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function showDashboard() {
+        if (!Auth::check()) {
+            dd("User not authenticated");
+        };
         $user = Auth::user();
         $totalJobs = $user->jobs()->count();
         $totalApplicants = $user->applicants()->count();

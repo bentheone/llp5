@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat, sans-serif;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+.form-container {
+    padding: 20px;
+    width: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.input-group input, select{
+    padding: 10px ;
+    outline: none;
+    border-radius: 7px;
+    border: 1px solid #ccc;
+}
+.radios  {
+    display: flex;
+    justify-content: space-evenly;
+}
+.form-container button{
+    width: 100%;
+    padding: 10px ;
+    border-radius: 7px;
+    background-color: yellowgreen;
+    color: black;
+    border: none;
+}
+.form-container h1, h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.input-group label {
+    padding: 2px 10px;
+}
+.form-container p {
+    padding: 5px;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: yellowgreen;
+    color: white;
+    height: 10vh;
+}
+.brand p{
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.links ul{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 10px;
+}
+.content {
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+    height: 80vh;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    width: 100%;
+}
+.greeting {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #9fb891;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.greeting h3 {
+    text-align: center;
+    font-weight: 600;
+    padding: 10px 20px;
+
+}
+
+.greeting p {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 10px 0;
+}
+.card  {
+    display: flex;
+    flex-direction: column;
+    background-color: #9fb891;
+    border-radius: 10px;
+    padding: 10px 0 10px 10px ;
+}
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 10vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+button {
+    padding: 10px ;
+    border-radius: 7px;
+    background-color: yellowgreen;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+button a {
+    color: white;
+    text-decoration: none;
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+.table table thead {
+    background: #ccc;
+    padding: 0;
+}

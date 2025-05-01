@@ -112,6 +112,6 @@ class StageController extends Controller
     public function destroy(Stage $stage)
     {
         $stage->delete();
-        return back()->with(['success' => 'Stage deleted!'])
+        return back()->with(['success' => 'Stage deleted!']);
     }
 }
