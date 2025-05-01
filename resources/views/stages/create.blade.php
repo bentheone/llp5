@@ -14,34 +14,29 @@
             <form action="{{route('stages.store')}}" method="post">
                 @csrf
             <div class="input-group">
-                <label for="job">Job</label>
-                <select name="job_id" id="job_id">
-                    <option value="">Select Job ---</option>
-                    @foreach ($jobs as $job)
-                    <option value="{{$job->id}}">{{$job->title}}</option>
+                <label for="application">Application</label>
+                <select name="application_id" id="application_id">
+                    <option value="">Select Application ---</option>
+                    @foreach ($applications as $application)
+                    <option value="{{$application->id}}">{{$application->id}}</option>
                     @endforeach 
                 </select>
             </div>
+            
             <div class="input-group">
-                <label for="applicant">Applicant</label>
-                <select name="applicant_id" id="applicant_id">
-                    <option value="">Select Applicant ---</option>
-                    @foreach ($applicants as $applicant)
-                    <option value="{{$applicant->id}}">{{$applicant->title}}</option>
-                    @endforeach 
-                </select>
+                <label for="Name">Name</label>
+                <input type="text" name="name" id="name" required>
             </div>
             <div class="input-group">
-                <label for="Status">Status</label>
                 <div class="radios">
-                    <input type="radio" name="status" id="status" value="accepted" required> Accepted
-                <input type="radio" name="status" id="status" value="denied" required> Denied
-                <input type="radio" name="status" id="status" value="pending" required> Pending
+                    <input type="radio" name="status" value="active">Active
+                    <input type="radio" name="status" value="inactive">Inactive
+                    <input type="radio" name="status" value="complete">Complete
                 </div>
             </div>
             <div class="input-group">
-                <label for="reviewDate">Review Date</label>
-                <input type="date" name="reviewDate" id="reviewDate" required>
+                <label for="completionDate">Completion Date Date</label>
+                <input type="date" name="completionDate" id="completionDate" required>
             </div>
             <button type="submit">Add Stage</button>
         </form>

@@ -27,7 +27,9 @@ class StageController extends Controller
      */
     public function create()
     {
-        return view('stages.create');
+        $user = Auth::user();
+        $applications = $user->applicantions()->get();
+        return view('stages.create', compact('applications'));
 
     }
 

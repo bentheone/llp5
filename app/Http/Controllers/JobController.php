@@ -18,7 +18,6 @@ class JobController extends Controller
         $user = Auth::user();
         $jobs = $user->jobs()->get();
         return view('jobs.index',compact('jobs', 'user'));
-
     }
 
     /**
@@ -47,9 +46,9 @@ class JobController extends Controller
                 'department'=>'required|string|max:255',
                 'qualifications'=>'required|string|max:255'
             ]);
-
+            $job['user_id'] = Auth::id();
             Job::create($job);
-            return view('jobs.index')->with(['success'=> 'Job position created successfully!']);
+            return redirect()->route('jobs.index')->with('success','Job position created successfully!');
         } catch (\Exception $e) {
             return back()->withErrors(['addJob'=>$e->getMessage()]);
         }
