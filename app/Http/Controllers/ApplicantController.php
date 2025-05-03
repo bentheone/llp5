@@ -95,7 +95,7 @@ class ApplicantController extends Controller
             ]);
 
             $applicant->update($updatedApplicant);
-            return view('applicant.index')->with(['success'=>'Applicant updated!']);
+            return redirect()->route('applicants.index')->with(['success'=>'Applicant updated!']);
         } catch (\Exception $e) {
             return back()->withErrors(['updateJob'=>$e->getMessage()]);
         }

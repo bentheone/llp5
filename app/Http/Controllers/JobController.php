@@ -93,7 +93,7 @@ class JobController extends Controller
             'qualifications'=>'required|string|max:255'
         ]);
         $job->update($updatedJob);
-        return view('jobs.index')->with(['success'=>'Job updated successfully!']);
+        return redirect()->route('jobs.index')->with('success','Job updated successfully!');
        } catch (\Exception $e) {
         return back()->withErrors(['updateJob'=> $e->getMessage()]);
        }

@@ -7,7 +7,7 @@
             <li><a href="/dashboard">Home</a></li>
             <li><a href="/jobs">Jobs</a></li>
             <li><a href="/applicants">Applicants</a></li>
-            <li><a href="/applications">Applications</a></li>
+            <li><a href="/applicantions">Applications</a></li>
             <li><a href="/stages">Stages</a></li>
             <li><a href="/report">Report</a></li>
         </ul>

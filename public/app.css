@@ -142,6 +142,7 @@ button {
     color: black;
     border: none;
     cursor: pointer;
+    margin: 5px 0;
 }
 button a {
     color: white;
@@ -164,4 +165,19 @@ button a {
 }
 .table table thead tr th {
     padding: 10px 20px;
+}
+.table table thead tr {
+    padding: 10px;
+}
+.table button {
+    margin: 5px 0;
+}
+table td {
+    text-align: center;
+}
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    
 }

@@ -25,7 +25,6 @@
                             <td>{{$applicant->lname}}</td>
                             <td>{{$applicant->email}}</td>
                             <td>{{$applicant->cnumber}}</td>
-                            <td>{{$applicant->cnumber}}</td>
                             <td>{{$applicant->applicationDate}}</td>
                             <td class="actions">
                                 <a href="{{route('applicants.edit', $applicant)}}">Edit</a>

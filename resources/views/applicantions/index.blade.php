@@ -1,10 +1,10 @@
 @extends('layout')
-@section('title', 'Applications')
+@section('title', 'Applicantions')
 @section('content')
     <div class="main">
         <div class="header">
-            <h3>All Applications!</h3>
-            <button><a href="/applications/create">Add New Application +</a></button>
+            <h3>All Applicantions!</h3>
+            <button><a href="/applicantions/create">Add New Applicantion +</a></button>
         </div>
         <div class="table">
             <table >
@@ -18,15 +18,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($applications as $application)
+                    @forelse ($applicantions as $applicantion)
                         <tr>
-                            <td>{{$application->jobs()->name}}</td>
-                            <td>{{$application->applicants()->fname}}</td>
-                            <td>{{$application->status}}</td>
-                            <td>{{$application->reviewDate}}</td>
+                            <td>{{$applicantion->job->title}}</td>
+                            <td>{{$applicantion->applicant->fname}}</td>
+                            <td>{{$applicantion->status}}</td>
+                            <td>{{$applicantion->reviewDate}}</td>
                             <td class="actions">
-                                <a href="{{route('applications.edit', $application)}}">Edit</a>
-                                <form action="{{route('applications.destroy' ,$application)}}" method="post">
+                                <a href="{{route('applicantions.edit', $applicantion->id)}}">Edit</a>
+                                <form action="{{route('applicantions.destroy' ,$applicantion)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit">Delete</button>
@@ -35,7 +35,7 @@
                         </tr>
                     @empty
                     <tr>
-                        <td colspan="5">No applications to show!</td>
+                        <td colspan="5">No applicantions to show!</td>
                     </tr>
                     @endforelse
                 </tbody>

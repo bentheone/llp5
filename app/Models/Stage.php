@@ -9,7 +9,8 @@ class Stage extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'application_id',
+        'user_id',
+        'applicantion_id',
         'name',
         'status',
         'completionDate'
@@ -19,7 +20,7 @@ class Stage extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function applications() {
-        return $this->hasMany(Applicantion::class);
+    public function applicantion() {
+        return $this->belongsTo(Applicantion::class);
     }
 }

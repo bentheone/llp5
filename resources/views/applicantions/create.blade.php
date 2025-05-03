@@ -27,7 +27,7 @@
                 <select name="applicant_id" id="applicant_id">
                     <option value="">Select Applicant ---</option>
                     @foreach ($applicants as $applicant)
-                    <option value="{{$applicant->id}}">{{$applicant->title}}</option>
+                    <option value="{{$applicant->id}}">{{$applicant->fname}} {{$applicant->lname}}</option>
                     @endforeach 
                 </select>
             </div>

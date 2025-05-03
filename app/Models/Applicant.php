@@ -11,6 +11,7 @@ class Applicant extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'fname',
         'lname',
         'email',
@@ -22,8 +23,8 @@ class Applicant extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function applications() {
-        return $this->hasMany(Application::class);
+    public function application() {
+        return $this->belongsTo(Application::class);
     }
 
 

@@ -20,7 +20,7 @@
                 <tbody>
                     @forelse ($stages as $stage)
                         <tr>
-                            <td>{{$stage->application_id}}</td>
+                            <td>{{$stage->applicantion->applicant->fname}} on {{$stage->applicantion->job->title}} Application</td>
                             <td>{{$stage->name}}</td>
                             <td>{{$stage->status}}</td>
                             <td>{{$stage->completionDate}}</td>

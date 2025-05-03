@@ -15,10 +15,10 @@
                 @csrf
             <div class="input-group">
                 <label for="application">Application</label>
-                <select name="application_id" id="application_id">
+                <select name="applicantion_id" id="application_id">
                     <option value="">Select Application ---</option>
                     @foreach ($applications as $application)
-                    <option value="{{$application->id}}">{{$application->id}}</option>
+                    <option value="{{$application->id}}">{{$application->applicant->fname}} on {{$application->job->title}}</option>
                     @endforeach 
                 </select>
             </div>
@@ -36,7 +36,7 @@
             </div>
             <div class="input-group">
                 <label for="completionDate">Completion Date Date</label>
-                <input type="date" name="completionDate" id="completionDate" required>
+                <input type="date" name="completionDate" id="completionDate" >
             </div>
             <button type="submit">Add Stage</button>
         </form>

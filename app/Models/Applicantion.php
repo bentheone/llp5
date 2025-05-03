@@ -9,6 +9,7 @@ class Applicantion extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
         'job_id',
         'applicant_id',
         'status',
@@ -18,10 +19,14 @@ class Applicantion extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
-    public function applicants() {
-        return $this->hasMany(Applicant::class);
+    public function applicant() {
+        return $this->belongsTo(Applicant::class);
     }
-    public function jobs() {
-        return $this->hasMany(Job::class);
+    public function job() {
+        return $this->belongsTo(Job::class);
     }
+    public function stage() {
+        return $this->hasOne(Stage::class, 'applicantion_id');
+    }
+    
 }

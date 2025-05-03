@@ -5,6 +5,7 @@ use App\Http\Controllers\ApplicantionController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,10 +25,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', function () {
     return view('login');
 })->name('loginForm');
-//Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', function () {
-    dd('Route reached!');
-})->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
 Route::get('/', function () {
     return view('register');
 });
@@ -45,10 +44,11 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 
  Route::middleware(['auth'])->group(function () {
+    Route::get('/report', [ReportController::class, 'dailyReport'])->name('report.daily');
     Route::get('/dashboard', [DashboardController::class, 'showDashboard']);
     Route::resource('jobs', JobController::class);
     Route::resource('applicants', ApplicantController::class);
-    Route::resource('applications', ApplicantionController::class);
+    Route::resource('applicantions', ApplicantionController::class);
     Route::resource('stages', StageController::class);
  });
 
